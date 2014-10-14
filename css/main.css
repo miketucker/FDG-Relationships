@@ -110,16 +110,19 @@ text-transform: uppercase;
 	cursor: pointer;
 }
 
-#playAnim {
+#playAnim, #getSource {
 	top: 20px;
 	left: 20px;
-	color: #fff;
+	color: #666;
 	text-decoration: none;
 	z-index: 100;
 	position: absolute;
 }
 
-
+#getSource {
+	top: inherit;
+	bottom: 20px;
+}
 
 #nav {
 	/*text-align: center;*/

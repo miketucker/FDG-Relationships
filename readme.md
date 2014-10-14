@@ -1,6 +1,6 @@
 # Force Directed Graph Relationships #
 
-View online: [http://miketucker.github.io/FDG-Relationships]()
+View online: [http://miketucker.github.io/FDG-Relationships](http://miketucker.github.io/FDG-Relationships)
 
 This was originally used to demonstrate relationships between platforms and concepts in previous projects.
 
