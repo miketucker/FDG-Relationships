@@ -320,18 +320,18 @@ class Graph
 	highlight: (node, connect = true) =>
 		if @selectedNode
 			@unhighlight(@selectedNode) 
-		else
-			node.select("text").transition()
-				.duration(300)
-				.style("font-size","36px")
-			@selectedNode = node
-			@selectedGraphNode = node.data()[0].graphNode
-			@force.charge(-300)
-			@centerPull.start()
-			@selectedGraphNode.fadeInPull()
-			# setTimeout () =>
-			@addNeighbors(node.data()[0].graphNode, connect)
-			# , 500
+	
+		node.select("text").transition()
+			.duration(300)
+			.style("font-size","36px")
+		@selectedNode = node
+		@selectedGraphNode = node.data()[0].graphNode
+		@force.charge(-300)
+		@centerPull.start()
+		@selectedGraphNode.fadeInPull()
+		# setTimeout () =>
+		@addNeighbors(node.data()[0].graphNode, connect)
+		# , 500
 		return
 
 

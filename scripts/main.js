@@ -861,15 +861,14 @@
       }
       if (this.selectedNode) {
         this.unhighlight(this.selectedNode);
-      } else {
-        node.select("text").transition().duration(300).style("font-size", "36px");
-        this.selectedNode = node;
-        this.selectedGraphNode = node.data()[0].graphNode;
-        this.force.charge(-300);
-        this.centerPull.start();
-        this.selectedGraphNode.fadeInPull();
-        this.addNeighbors(node.data()[0].graphNode, connect);
       }
+      node.select("text").transition().duration(300).style("font-size", "36px");
+      this.selectedNode = node;
+      this.selectedGraphNode = node.data()[0].graphNode;
+      this.force.charge(-300);
+      this.centerPull.start();
+      this.selectedGraphNode.fadeInPull();
+      this.addNeighbors(node.data()[0].graphNode, connect);
     };
 
     Graph.prototype.unhighlight = function(node) {
