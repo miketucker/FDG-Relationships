@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Mike Tucker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/>	
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/ue.css" id="theme">
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+</head>
+<body>
+
+	<a href="#" id="playAnim">Play Animation</a>
+
+	<div id="nav">
+		<ul>
+			<li>Languages</li>
+			<li>Platforms</li>
+			<li>Projects</li>
+			<li>Tools</li>
+			<li>Concepts</li>
+		</ul>
+	</div>
+
+
+	<body>
+
+		<!-- <div id="overlay"></div> -->
+
+		<script type="text/javascript">
+		var graph, showOverlay, hideOverlay;
+		var se = [];
+		se['hide'] = function(){ hideOverlay(); }
+		</script>
+		<div class="reveal">
+
+		</div>
+
+<script type="text/javascript" src="scripts/head.min.js"></script>
+<script type="text/javascript" src="scripts/reveal.js"></script>
+<script type="text/javascript" src="scripts/d3.v3.js"></script>
+<script type="text/javascript" src="scripts/dat.gui.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+<!-- <script type="text/javascript" src="scripts/presentation.js"></script> -->
+
+<script type="text/javascript">
+
+
+
+	function onLoaded(){
+
+		// PLAYBACK EACH OF THE PROJECTS ONE BY ONE, 
+		// AND LINK THEIR CONNECTING OBJECTS FOR A PERIOD OF 2 SECONDS
+		// THEN REMOVE ALL THE LINKS FOR THE NEXT PROJECT
+
+		var isPlaying = false;
+
+		var playback = function(e){
+			e.preventDefault();
+			
+			if(isPlaying) return;
+			isPlaying = true;
+
+			var i = 0;
+			var projects = graph.getGroup(3);
+			console.log("projects", projects);
+
+			var scope = graph;
+
+			var anim = function(){
+				console.log(i,projects[i]);
+				var node = scope.addNode(projects[i]);
+
+				scope.force.start();
+
+				setTimeout(function(){
+					scope.highlight(node.dom, true);
+				},100);
+
+				setTimeout(function(){
+					scope.removeAllLinks();
+				},1900);
+
+				i++;
+				if(i < projects.length) setTimeout(anim,2000);
+			}
+
+			anim();
+		}
+
+		$('#playAnim').click(playback);
+
+		
+	}
+
+	var options = {
+		colorRange: ["#fff","#f7ff6c","#2efd41","#f22459","#00c3c8","#bababa"]
+	}
+
+	graph = new Graph("data.json",options, onLoaded);
+</script>
+</body>
+</html>
